@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@microservice/interfaces": ["libs/interfaces/src/index.ts"]
+      "@microservice/contracts":["libs/contracts/src/index.ts"],
+      "@microservice/interfaces":["libs/interfaces/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
