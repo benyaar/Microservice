@@ -1,4 +1,4 @@
-import {IUser, UserRole} from "@microservice/interfaces";
+import {IUser, IUserCourses, UserRole} from "@microservice/interfaces";
 import { genSalt, hash, compare } from 'bcryptjs'
 
 export class UserEntity implements IUser{
@@ -7,6 +7,7 @@ export class UserEntity implements IUser{
   email: string;
   passwordHash: string;
   role: UserRole;
+  courses: IUserCourses[]
 
   constructor(user: IUser) {
     this._id = user._id
@@ -14,6 +15,7 @@ export class UserEntity implements IUser{
     this.passwordHash = user.passwordHash
     this.email = user.email
     this.role = user.role
+    this.courses = user.courses
   }
 
   public async setPassword(password: string) {

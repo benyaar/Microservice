@@ -4,18 +4,7 @@ import {AccountLogin, AccountRegister} from '@microservice/contracts';
 import {RMQRoute, RMQValidate} from "nestjs-rmq";
 
 
-export class RegisterDto{
-  email: string;
-  password: string;
-  displayName?: string;
-}
-
-export class LoginDto{
-  email: string;
-  password: string;
-}
-
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(
     private readonly authService:AuthService
