@@ -1,15 +1,19 @@
 import {IsString} from "class-validator";
 import {IUser} from "@microservice/interfaces";
-export namespace AccountUserInfo {
-  export const topic = 'account.user-info.query'
+
+export namespace AccountChangeProfile {
+  export const topic = 'account.change-profile.command'
 
   export class Request {
     @IsString()
     id: string
+
+    @IsString()
+    user: Pick<IUser, 'displayName'>
+
   }
 
   export class Response {
-    profile: Omit<IUser, 'passwordHash'>
   }
 }
 
