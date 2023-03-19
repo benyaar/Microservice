@@ -1,5 +1,5 @@
-import {IUser, IUserCourses, UserRole} from "@microservice/interfaces";
-import { genSalt, hash, compare } from 'bcryptjs'
+import {IUser, IUserCourses, PurchaseState, UserRole} from "@microservice/interfaces";
+import {compare, genSalt, hash} from 'bcryptjs'
 
 export class UserEntity implements IUser{
   _id: string;
@@ -16,6 +16,31 @@ export class UserEntity implements IUser{
     this.email = user.email
     this.role = user.role
     this.courses = user.courses
+  }
+
+  public addCourse(courseId: string){
+    const exist = this.courses.find(c => c._id === courseId)
+    if(exist){
+      throw new Error ('Course is already exist')
+    }
+    this.courses.push({
+      courseId,
+      purchaseState: PurchaseState.Started
+    })
+  }
+
+  public deleteCourse(courseId: string){
+    this.courses = this.courses.filter(c => c._id !== courseId)
+  }
+
+  public updateCourseStatus(courseId: string, state: PurchaseState){
+    this.courses = this.courses.map( c => {
+      if( c._id === courseId){
+        c.purchaseState = state
+        return c
+      }
+      return c
+    })
   }
 
   public getPublicProfile(){
