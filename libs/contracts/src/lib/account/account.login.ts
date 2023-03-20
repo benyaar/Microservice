@@ -1,4 +1,5 @@
 import {IsEmail, IsString} from "class-validator";
+
 export namespace AccountLogin {
   export const topic = 'account.login.command'
 

@@ -6,7 +6,7 @@ import {BuyCourseSagaState} from "./buy-course.state";
 export class BuyCourseSaga {
   private state: BuyCourseSagaState
 
-  constructor(private user: UserEntity, private courseId: string, private rmqService: RMQService) {}
+  constructor(public user: UserEntity, public courseId: string, public rmqService: RMQService) {}
 
   setState(state: PurchaseState, courseId: string){
     switch (state){
